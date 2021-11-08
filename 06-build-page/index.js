@@ -24,21 +24,15 @@ fs.readFile(pathHtml, 'utf-8', function(err, data) {
     if (err) throw err
     fs.readdir(pathComponents, (err, files) => {
         if (err) throw err
-        for (const file of files) {
-            
+        for (const file of files) {    
             fs.readFile(path.join(pathComponents, file), 'utf-8', (err, info) => {
                 if (err) throw err
-
                 let name = file.split('.')[0]
                 let key = new RegExp(`{{${name}}}`, 'g')
-                
+
                 data = data.replace(key, info)
 
-                fs.writeFile(path.join(pathHtml), data, 'utf-8', (err) => {
-                    if (err) throw err
-                })
-
-                fs.copyFile(pathHtml, pathDist, (err) => {
+                fs.writeFile(path.join(pathDist), data, 'utf-8', (err) => {
                     if (err) throw err
                 })
             })
@@ -65,7 +59,7 @@ fs.readdir(pathStyles, function(err, files) {
     }
 })
 
-// //============COPY ASSETS==================
+//============COPY ASSETS==================
 
 function copyFonts(){
 fs.readdir(pathAssets, { withFileTypes: true }, function(err, files) {
