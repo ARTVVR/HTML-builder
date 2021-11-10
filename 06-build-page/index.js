@@ -42,7 +42,7 @@ fs.readFile(pathHtml, 'utf-8', function(err, data) {
 
 
 //============COPY STYLES==================
-
+function copyFile() {
 fs.readdir(pathStyles, function(err, files) {
     if (err) throw err
     for (const file of files) {
@@ -58,6 +58,20 @@ fs.readdir(pathStyles, function(err, files) {
         })
     }
 })
+}
+
+
+function del() {
+    if (pathCopeFiles) {
+        fs.unlink(pathCopeFiles, (err) => {
+        })
+        copyFile()
+    } else {
+        copyFile()
+    }
+}
+
+del()
 
 //============COPY ASSETS==================
 
