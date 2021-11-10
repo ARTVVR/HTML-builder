@@ -9,7 +9,7 @@ fs.readdir(path.join(__dirname, 'secret-folder'), {withFileTypes: true}, functio
         const name = file.name
         
         fs.stat(path.join(__dirname, 'secret-folder', name), (err, data) => {
-            console.log(`${path.basename(file.name.split('.').splice(0, 1).join(''))} - ${path.basename(file.name.split('.').slice(1).join(''))} - ${(data.size / 1024)}`)
+            console.log(`${path.basename(file.name.split('.').splice(0, 1).join(''))} - ${path.basename(file.name.split('.').splice(1, 1).join(''))} - ${(data.size / 1024)}`)
         })
     }
 })
